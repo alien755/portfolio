@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ali Abdullah Portfolio</title>
+<meta name="description" content="Technical Designer. VFX and gameplay systems in Unreal Engine 5.">
+<meta property="og:title" content="Ali Abdullah Portfolio">
+<meta property="og:description" content="Technical Designer. VFX and gameplay systems in Unreal Engine 5.">
+<meta property="og:image" content="https://alien755.github.io/portfolio/img/hero.jpg">
+<style>body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=Marcellus&display=swap">
+<style>
+  /* Layout: one quiet column at dusk. Film stills carry the page; each has a few lines of text and a lot of air around it. */
+  :root {
+    color-scheme: dark;
+    --bg: #151015;
+    --bg-raised: #1e171c;
+    --line: #3b2c31;
+    --fg: #efe6dd;
+    --muted: #ab9a90;
+    --ember: #f2903f;
+    --display: "Marcellus", Georgia, "Times New Roman", serif;
+    --body: "Barlow", "Segoe UI", system-ui, sans-serif;
+    --label: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+    --gap-section: clamp(80px, 13vw, 160px);
+    --gap-block: clamp(28px, 4.5vw, 48px);
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.65;
+  }
+  .page {
+    max-width: 980px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 48px);
+    padding-block: clamp(56px, 9vw, 120px) 64px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-section);
+  }
+  h1, h2, h3, p, figure, dl, dd, ul { margin: 0; }
+  h1, h2 { font-family: var(--display); font-weight: 400; text-wrap: balance; }
+  h1 { font-size: clamp(2.8rem, 9vw, 5rem); line-height: 1; letter-spacing: 0.01em; }
+  h2 { font-size: clamp(1.9rem, 5vw, 2.8rem); line-height: 1.1; }
+  p { max-width: 54ch; }
+  .label {
+    font-family: var(--label);
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+  .muted { color: var(--muted); }
+  .block { display: flex; flex-direction: column; gap: var(--gap-block); }
+  .head { display: flex; flex-direction: column; gap: 16px; }
+
+  /* Opening */
+  .role { font-size: clamp(1.1rem, 2.6vw, 1.4rem); }
+  .lede { color: var(--muted); }
+
+  /* Stills */
+  .still { display: flex; flex-direction: column; gap: 14px; }
+  .frame { overflow: hidden; background: var(--bg-raised); max-width: 100%; }
+  .frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .frame.scope { aspect-ratio: 2.39 / 1; }
+  .frame.tall { aspect-ratio: 4 / 5; }
+  .still figcaption {
+    font-family: var(--label);
+    font-weight: 500;
+    font-size: 0.86rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .still figcaption b { color: var(--fg); font-weight: 600; margin-right: 10px; }
+  .hero img { object-position: 50% 72%; }
+  .motion img { object-position: 50% 70%; }
+
+  /* Project facts */
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+  }
+  .facts div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .facts dt { font-family: var(--label); font-weight: 600; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+
+  /* The three frames of the change */
+  .strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 2.4vw, 28px); }
+  .aside { font-family: var(--display); font-size: clamp(1.25rem, 3vw, 1.7rem); line-height: 1.35; max-width: 30ch; text-wrap: balance; }
+
+  /* Closing */
+  .closing { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(40px, 7vw, 80px) clamp(32px, 6vw, 72px); border-top: 1px solid var(--line); padding-top: clamp(40px, 6vw, 64px); }
+  .closing > div { min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .tags li { border: 1px solid var(--line); padding: 5px 14px; font-size: 0.92rem; }
+  .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+  .mail span { font-family: var(--display); font-size: clamp(1.15rem, 3.4vw, 1.5rem); overflow-wrap: anywhere; user-select: all; }
+  .mail button {
+    font: 600 0.8rem var(--label);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg);
+    background: transparent;
+    border: 1px solid var(--line);
+    padding: 7px 14px;
+    cursor: pointer;
+  }
+  .mail button:hover { border-color: var(--ember); color: var(--ember); }
+  .mail button:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+  footer { color: var(--muted); font-size: 0.9rem; }
+  footer p { max-width: 70ch; }
+
+  @media (max-width: 700px) {
+    body { font-size: 17px; }
+    .frame.scope { aspect-ratio: 16 / 9; }
+    .hero img { object-position: 50% 60%; }
+    .motion img { object-position: 50% 55%; }
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .closing { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .strip { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .frame.tall { aspect-ratio: 1 / 1; }
+  }
+</style>
+
+<main class="page">
+
+  <header class="block">
+    <div class="head">
+      <span class="label">Portfolio</span>
+      <h1>Ali Abdullah</h1>
+      <p class="role">Technical Designer. VFX and gameplay systems in Unreal Engine 5.</p>
+      <p class="lede">I build gameplay systems and the real-time effects that make them readable.</p>
+    </div>
+    <figure class="still hero">
+      <div class="frame scope"><img src="img/hero.jpg" alt="A burning demon figure stands at sunset with a huge flaming great sword resting on his shoulder."></div>
+      <figcaption><b>3D Melee RPG</b>Demon form, captured in engine</figcaption>
+    </figure>
+  </header>
+
+  <section class="block">
+    <div class="head">
+      <span class="label">Current project</span>
+      <h2>3D Melee RPG</h2>
+      <p>A dark-fantasy action RPG about a fighter who takes on a demon's power. <span class="muted">Shown here on blockout geometry.</span></p>
+    </div>
+    <dl class="facts">
+      <div><dt>Role</dt><dd>Technical Designer</dd></div>
+      <div><dt>Team</dt><dd>Two developers</dd></div>
+      <div><dt>Engine</dt><dd>Unreal Engine 5</dd></div>
+      <div><dt>Status</dt><dd>In development</dd></div>
+    </dl>
+  </section>
+
+  <section class="block">
+    <div class="head">
+      <span class="label">VFX and materials</span>
+      <h2>The transformation</h2>
+      <p>One key press changes the character and his weapon. The sword burns and grows into a great sword while burning veins spread across the body.</p>
+    </div>
+    <div class="strip">
+      <figure class="still">
+        <div class="frame tall"><img src="img/change-1.jpg" alt="A plain grey fighter stands with a small sword held low."></div>
+        <figcaption><b>1</b>Before</figcaption>
+      </figure>
+      <figure class="still">
+        <div class="frame tall"><img src="img/change-2.jpg" alt="The fighter holds a huge glowing sword straight overhead, flame at its tip."></div>
+        <figcaption><b>2</b>The change</figcaption>
+      </figure>
+      <figure class="still">
+        <div class="frame tall"><img src="img/change-3.jpg" alt="Close view of the demon form: glowing ribs and face, flames rising from the great sword on his shoulder."></div>
+        <figcaption><b>3</b>After</figcaption>
+      </figure>
+    </div>
+    <p class="aside">Body, blade and fire follow one shared pulse, so the change reads as a single event.</p>
+    <figure class="still motion">
+      <div class="frame scope"><img src="img/heat.jpg" alt="The demon form sweeps the great sword low, fire streaks trailing behind the blade."></div>
+      <figcaption>Demon form in motion</figcaption>
+    </figure>
+  </section>
+
+  <section class="closing">
+    <div>
+      <span class="label">Skills</span>
+      <ul class="tags">
+        <li>Gameplay systems</li>
+        <li>Gameplay-driven VFX</li>
+        <li>Particle and fluid effects</li>
+        <li>Materials and shaders</li>
+        <li>Animation and locomotion</li>
+        <li>Combat and enemy AI</li>
+        <li>Level design</li>
+      </ul>
+    </div>
+    <div>
+      <span class="label">Tools</span>
+      <ul class="tags">
+        <li>Unreal Engine 5</li>
+        <li>Blueprints</li>
+        <li>C++</li>
+        <li>Niagara</li>
+        <li>GitHub</li>
+        <li>AI-assisted development</li>
+      </ul>
+    </div>
+    <div>
+      <span class="label">Earlier work</span>
+      <p><b>2.5D Vertical Scroller.</b> Gameplay Programmer on a team project. Camera, player logic and enemy AI.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Digital Game Design, 4th year, Istanbul. Team project; character animation from licensed packs and Epic's locomotion sample.</p>
+  </footer>
+
+</main>
+</body>
+</html>

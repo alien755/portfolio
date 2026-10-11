@@ -149,6 +149,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ember); outline
 .frame.scope { aspect-ratio: 2.39 / 1; }
 .frame.wide { aspect-ratio: 16 / 10; }
 .frame.tall { aspect-ratio: 4 / 5; }
+.frame.film { aspect-ratio: 16 / 10; }
+.frame video { display: block; width: 100%; height: 100%; object-fit: contain; background: #000; }
 .still figcaption {
   font-family: var(--label);
   font-weight: 500;

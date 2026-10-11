@@ -54,7 +54,7 @@
           <source src="video/overkill-highlights.mp4" type="video/mp4">
         </video>
       </div>
-      <figcaption><b>Gameplay</b>Highlights, 86 seconds: the settlement, the quest, the cave and the arena fight</figcaption>
+      <figcaption><b>Gameplay</b>Highlights, under two minutes: into the cave, through the cave town, to the arena fight</figcaption>
     </figure>
   </section>
 
@@ -123,6 +123,19 @@
   </nav>
 
 </main>
+
+<script>
+  // The cave was recorded dark: lift the picture a little once the clip goes underground (12 seconds in).
+  (function () {
+    var clip = document.querySelector(".film video");
+    if (!clip) { return; }
+    var underground = 12;
+    clip.style.transition = "filter 0.4s ease";
+    function tune() { clip.style.filter = clip.currentTime >= underground ? "brightness(1.4)" : "none"; }
+    clip.addEventListener("timeupdate", tune);
+    clip.addEventListener("seeked", tune);
+  })();
+</script>
 
 </body>
 </html>

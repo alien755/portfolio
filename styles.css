@@ -72,7 +72,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ember); outline
 .scrim {
   z-index: -1;
   background:
-    linear-gradient(to top, rgba(var(--bg-rgb), 0.96) 0%, rgba(var(--bg-rgb), 0.55) 34%, rgba(var(--bg-rgb), 0.18) 62%, rgba(var(--bg-rgb), 0.5) 100%);
+    linear-gradient(to top, rgba(var(--bg-rgb), 0.97) 0%, rgba(var(--bg-rgb), 0.78) 30%, rgba(var(--bg-rgb), 0.45) 58%, rgba(var(--bg-rgb), 0.2) 78%, rgba(var(--bg-rgb), 0.5) 100%);
 }
 .stage-top { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 .stage-top a, .now {

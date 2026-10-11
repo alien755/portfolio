@@ -104,6 +104,9 @@
   .closing > div { min-width: 0; display: flex; flex-direction: column; gap: 16px; }
   .tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .tags li { border: 1px solid var(--line); padding: 5px 14px; font-size: 0.92rem; }
+  .link { font-family: var(--display); font-size: clamp(1.15rem, 3.4vw, 1.5rem); color: var(--fg); text-decoration-color: var(--ember); text-underline-offset: 6px; overflow-wrap: anywhere; }
+  .link:hover { color: var(--ember); }
+  .link:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
   .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
   .mail span { font-family: var(--display); font-size: clamp(1.15rem, 3.4vw, 1.5rem); overflow-wrap: anywhere; user-select: all; }
   .mail button {
@@ -218,6 +221,10 @@
     <div>
       <span class="label">Earlier work</span>
       <p><b>2.5D Vertical Scroller.</b> Gameplay Programmer on a team project. Camera, player logic and enemy AI.</p>
+    </div>
+    <div>
+      <span class="label">GitHub</span>
+      <p><a class="link" href="https://github.com/alien755">github.com/alien755</a></p>
     </div>
   </section>
 

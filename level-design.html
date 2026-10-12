@@ -152,7 +152,7 @@
         var px = pen.getImageData(0, 0, 32, 20).data;
         var sum = 0;
         for (var i = 0; i < px.length; i += 4) { sum += 0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2]; }
-        var want = Math.max(1, Math.min(2.2, 40 / Math.max(sum / (px.length / 4), 1)));
+        var want = Math.max(1, Math.min(2.2, 50 / Math.max(sum / (px.length / 4), 1)));
         if (Math.abs(want - gain) > 0.15) {
           gain = want;
           clip.style.filter = gain > 1.05 ? "brightness(" + gain.toFixed(2) + ")" : "none";

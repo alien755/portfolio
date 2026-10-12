@@ -6,7 +6,7 @@
 <title>Level design | Ali Abdullah</title>
 <meta name="description" content="Overkill Protocol, a playable Fallout 4 mod. Level design: the map, its layout and how the spaces connect.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=Marcellus&display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 
@@ -28,8 +28,13 @@
       <p class="lede">A quest mod for Fallout 4, published and played over 2,000 times.</p>
     </div>
     <figure class="still">
-      <div class="frame scope"><img src="img/ld-07.jpg" alt="Overview of a walled settlement: shacks with rusted roofs stand in a ring around a tall central tower, a curved concrete wall behind them." style="object-position: 50% 45%"></div>
-      <figcaption><b>The settlement</b>Shacks in a ring around a central tower</figcaption>
+      <div class="frame film">
+        <video controls playsinline preload="metadata" poster="img/ld-video.jpg?v=2">
+          <source src="video/overkill-highlights.mp4?v=3" type="video/mp4">
+        </video>
+        <button class="play" type="button" hidden>Watch the gameplay <span>2:14</span></button>
+      </div>
+      <figcaption><b>Gameplay</b>All three areas and the way between them: settlement, cave town, arena</figcaption>
     </figure>
     <dl class="facts">
       <div><dt>Role</dt><dd>Level Designer</dd></div>
@@ -48,14 +53,6 @@
       <p>The level is built to carry that story. An open settlement on the surface, a cramped cave town below it, and the arena at its heart. A quest sends the player into the conflict and after a target.</p>
       <p>I designed and built the level, scripted the quest in Papyrus, and learned the Creation Kit to do it.</p>
     </div>
-    <figure class="still">
-      <div class="frame film">
-        <video controls playsinline preload="metadata" poster="img/ld-video.jpg?v=2">
-          <source src="video/overkill-highlights.mp4?v=2" type="video/mp4">
-        </video>
-      </div>
-      <figcaption><b>Gameplay</b>Highlights, under two minutes: into the cave, through the cave town, to the arena fight</figcaption>
-    </figure>
   </section>
 
   <section class="block">
@@ -64,6 +61,10 @@
       <h2>A walled settlement</h2>
       <p>The surface is open and easy to read. One tall tower marks the centre, and everything else is placed around it.</p>
     </div>
+    <figure class="still">
+      <div class="frame scope"><img src="img/ld-07.jpg" alt="Overview of a walled settlement: shacks with rusted roofs stand in a ring around a tall central tower, a curved concrete wall behind them." style="object-position: 50% 45%"></div>
+      <figcaption><b>The settlement</b>Shacks in a ring around a central tower</figcaption>
+    </figure>
     <div class="pair">
       <figure class="still">
         <div class="frame wide"><img src="img/ld-10.jpg" alt="Hills and a billboard wall above a concrete pad, with the walled settlement and its tower behind."></div>
@@ -125,15 +126,39 @@
 </main>
 
 <script>
-  // The cave was recorded dark: lift the picture a little once the clip goes underground (12 seconds in).
   (function () {
     var clip = document.querySelector(".film video");
-    if (!clip) { return; }
-    var underground = 12;
-    clip.style.transition = "filter 0.4s ease";
-    function tune() { clip.style.filter = clip.currentTime >= underground ? "brightness(1.4)" : "none"; }
-    clip.addEventListener("timeupdate", tune);
-    clip.addEventListener("seeked", tune);
+    var start = document.querySelector(".film .play");
+    if (!clip || !start) { return; }
+
+    // The clip waits behind its cover picture until the viewer asks for it.
+    clip.removeAttribute("controls");
+    start.hidden = false;
+    function open() { start.hidden = true; clip.setAttribute("controls", ""); }
+    start.addEventListener("click", function () { open(); clip.play(); });
+    clip.addEventListener("play", open);
+
+    // The cave was recorded dark: measure each moment of the picture and lift the dark ones.
+    var probe = document.createElement("canvas");
+    probe.width = 32;
+    probe.height = 20;
+    var pen = probe.getContext("2d", { willReadFrequently: true });
+    var gain = 1;
+    clip.style.transition = "filter 0.6s ease";
+    setInterval(function () {
+      if (clip.paused || clip.ended) { return; }
+      try {
+        pen.drawImage(clip, 0, 0, 32, 20);
+        var px = pen.getImageData(0, 0, 32, 20).data;
+        var sum = 0;
+        for (var i = 0; i < px.length; i += 4) { sum += 0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2]; }
+        var want = Math.max(1, Math.min(2.2, 40 / Math.max(sum / (px.length / 4), 1)));
+        if (Math.abs(want - gain) > 0.15) {
+          gain = want;
+          clip.style.filter = gain > 1.05 ? "brightness(" + gain.toFixed(2) + ")" : "none";
+        }
+      } catch (e) { /* the picture stays as recorded */ }
+    }, 400);
   })();
 </script>
 

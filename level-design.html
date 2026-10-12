@@ -6,7 +6,7 @@
 <title>Level design | Ali Abdullah</title>
 <meta name="description" content="Overkill Protocol, a playable Fallout 4 mod. Level design: the map, its layout and how the spaces connect.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=Marcellus&display=swap">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -19,31 +19,31 @@
   </nav>
 </header>
 
-<main class="page">
-
-  <section class="block">
-    <div class="head">
+<section class="stage inner">
+  <div class="slides" aria-hidden="true">
+    <div class="slide is-on" style="background-image: url(img/ld-07.jpg); background-position: 50% 45%"></div>
+    <div class="slide"></div>
+  </div>
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="stage-body">
+    <div class="stage-name">
       <span class="label">Level design</span>
       <h1>Overkill Protocol</h1>
-      <p class="lede">A quest mod for Fallout 4, published and played over 2,000 times.</p>
+      <p class="role">A quest mod for Fallout 4, published and played over 2,000 times.</p>
+      <p class="now" id="now"><b>Above ground</b> &nbsp;The settlement</p>
     </div>
-    <figure class="still">
-      <div class="frame film">
-        <video controls playsinline preload="metadata" poster="img/ld-video.jpg?v=2">
-          <source src="video/overkill-highlights.mp4?v=4" type="video/mp4">
-        </video>
-        <button class="play" type="button" hidden>Watch the gameplay <span>1:18</span></button>
-      </div>
-      <figcaption><b>Gameplay</b>A quick walk through all three areas: settlement, cave town, arena</figcaption>
-    </figure>
-    <dl class="facts">
-      <div><dt>Role</dt><dd>Level Designer</dd></div>
-      <div><dt>Game</dt><dd>Fallout 4</dd></div>
-      <div><dt>Type</dt><dd>University project</dd></div>
-      <div><dt>Status</dt><dd>Published, over 2,000 plays</dd></div>
-    </dl>
-    <a class="button" href="https://creations.bethesda.net/en/fallout4/details/65434721-ea05-40a7-bb97-c95710fe197f/fallout_4_University_project">Play it on Bethesda Creations</a>
-  </section>
+    <button class="watch" type="button" id="watch">Watch the gameplay <span>1:26</span></button>
+  </div>
+</section>
+
+<dialog class="theatre" id="theatre" aria-label="Gameplay video">
+  <button class="shut" type="button" id="shut">Close</button>
+  <video controls playsinline preload="none" poster="img/ld-video.jpg?v=2">
+    <source src="video/overkill-highlights.mp4?v=5" type="video/mp4">
+  </video>
+</dialog>
+
+<main class="page">
 
   <section class="block">
     <div class="head">
@@ -53,6 +53,13 @@
       <p>The level is built to carry that story. An open settlement on the surface, a cramped cave town below it, and the arena at its heart. A quest sends the player into the conflict and after a target.</p>
       <p>I designed and built the level, scripted the quest in Papyrus, and learned the Creation Kit to do it.</p>
     </div>
+    <dl class="facts">
+      <div><dt>Role</dt><dd>Level Designer</dd></div>
+      <div><dt>Game</dt><dd>Fallout 4</dd></div>
+      <div><dt>Type</dt><dd>University project</dd></div>
+      <div><dt>Status</dt><dd>Published, over 2,000 plays</dd></div>
+    </dl>
+    <a class="button" href="https://creations.bethesda.net/en/fallout4/details/65434721-ea05-40a7-bb97-c95710fe197f/fallout_4_University_project">Play it on Bethesda Creations</a>
   </section>
 
   <section class="block">
@@ -127,16 +134,52 @@
 
 <script>
   (function () {
-    var clip = document.querySelector(".film video");
-    var start = document.querySelector(".film .play");
-    if (!clip || !start) { return; }
+    // The opening picture changes between the three areas of the level.
+    var views = [
+      { src: "img/ld-07.jpg", pos: "50% 45%", area: "Above ground", what: "The settlement" },
+      { src: "img/ld-02.jpg", pos: "50% 50%", area: "Below ground", what: "The cave town" },
+      { src: "img/ld-01.jpg", pos: "50% 52%", area: "The arena", what: "A cage over the water" },
+      { src: "img/ld-10.jpg", pos: "50% 55%", area: "Above ground", what: "The wider area" },
+      { src: "img/ld-05.jpg", pos: "50% 50%", area: "The arena", what: "Walkways over the water" }
+    ];
+    var layers = document.querySelectorAll(".slide");
+    var now = document.getElementById("now");
+    var index = 0;
+    var front = 0;
+    function show(next) {
+      var view = views[next];
+      var picture = new Image();
+      picture.onload = function () {
+        var back = layers[1 - front];
+        back.style.backgroundImage = "url(" + view.src + ")";
+        back.style.backgroundPosition = view.pos;
+        back.classList.add("is-on");
+        layers[front].classList.remove("is-on");
+        front = 1 - front;
+        index = next;
+        now.textContent = "";
+        var area = document.createElement("b");
+        area.textContent = view.area;
+        now.appendChild(area);
+        now.appendChild(document.createTextNode("  " + view.what));
+      };
+      picture.src = view.src;
+    }
+    setInterval(function () {
+      if (!document.hidden) { show((index + 1) % views.length); }
+    }, 5000);
 
-    // The clip waits behind its cover picture until the viewer asks for it.
-    clip.removeAttribute("controls");
-    start.hidden = false;
-    function open() { start.hidden = true; clip.setAttribute("controls", ""); }
-    start.addEventListener("click", function () { open(); clip.play(); });
-    clip.addEventListener("play", open);
+    // The gameplay opens in its own box and stops when the box is closed.
+    var theatre = document.getElementById("theatre");
+    var clip = theatre.querySelector("video");
+    document.getElementById("watch").addEventListener("click", function () {
+      if (theatre.showModal) { theatre.showModal(); } else { theatre.setAttribute("open", ""); }
+      clip.play();
+    });
+    function shut() { clip.pause(); if (theatre.close) { theatre.close(); } else { theatre.removeAttribute("open"); } }
+    document.getElementById("shut").addEventListener("click", shut);
+    theatre.addEventListener("click", function (event) { if (event.target === theatre) { shut(); } });
+    theatre.addEventListener("close", function () { clip.pause(); });
 
     // The cave was recorded dark: measure each moment of the picture and lift the dark ones.
     var probe = document.createElement("canvas");

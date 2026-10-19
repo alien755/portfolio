@@ -295,3 +295,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ember); outline
   html { scroll-behavior: auto; }
   .slide { animation: none; transition-duration: 0.01s; }
 }
+
+/* A short looping clip shown like a moving picture. */
+.frame.clip { aspect-ratio: 16 / 9; }
+.frame.clip video { display: block; width: 100%; height: 100%; object-fit: cover; background: #000; }

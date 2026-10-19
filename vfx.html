@@ -6,7 +6,7 @@
 <title>VFX | Ali Abdullah</title>
 <meta name="description" content="Real-time VFX driven by gameplay: the demon transformation from a 3D melee RPG in Unreal Engine 5.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=Marcellus&display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -45,6 +45,12 @@
       <h2>One key press, two forms</h2>
       <p>The character and his weapon change together. The sword burns and grows into a great sword while burning veins spread across the body.</p>
     </div>
+    <figure class="still">
+      <div class="frame clip"><video class="loop" autoplay muted loop playsinline preload="auto" poster="img/transformation-poster.jpg">
+        <source src="video/transformation.mp4" type="video/mp4">
+      </video></div>
+      <figcaption><b>In engine</b>The transformation in real time</figcaption>
+    </figure>
     <div class="strip">
       <figure class="still">
         <div class="frame tall"><img src="img/change-1.jpg" alt="A plain grey fighter stands with a small sword held low."></div>
@@ -73,6 +79,18 @@
   </nav>
 
 </main>
+
+<script>
+  // The clip plays like a moving picture; viewers who ask for less motion get it paused, with controls.
+  (function () {
+    var clip = document.querySelector("video.loop");
+    if (clip && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      clip.removeAttribute("autoplay");
+      clip.pause();
+      clip.setAttribute("controls", "");
+    }
+  })();
+</script>
 
 <footer class="site-foot">
   <p>Team project. Character animation from licensed packs and Epic's locomotion sample.</p>

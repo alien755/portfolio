@@ -6,7 +6,7 @@
 <title>Level design | Ali Abdullah</title>
 <meta name="description" content="Overkill Protocol, a playable Fallout 4 mod. Level design: the map, its layout and how the spaces connect.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=Marcellus&display=swap">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
 
 <section class="stage inner">
   <div class="slides" aria-hidden="true">
-    <div class="slide is-on" style="background-image: url(img/ld-bg-hill.jpg); background-position: 50% 50%"></div>
+    <div class="slide is-on" style="background-image: url(img/ld-10.jpg); background-position: 50% 55%"></div>
     <div class="slide"></div>
   </div>
   <div class="scrim" aria-hidden="true"></div>
@@ -30,7 +30,7 @@
       <span class="label">Level design</span>
       <h1>Overkill Protocol</h1>
       <p class="role">A quest mod for Fallout 4, published and played over 2,000 times.</p>
-      <p class="now" id="now"><b>Above ground</b> &nbsp;The settlement</p>
+      <p class="now" id="now"><b>Above ground</b> &nbsp;The wider area</p>
     </div>
     <button class="watch" type="button" id="watch">Watch the gameplay <span>1:21</span></button>
   </div>
@@ -68,18 +68,14 @@
       <h2>A walled settlement</h2>
       <p>The surface is open and easy to read. One tall tower marks the centre, and everything else is placed around it.</p>
     </div>
-    <figure class="still">
-      <div class="frame scope"><img src="img/ld-07.jpg" alt="Overview of a walled settlement: shacks with rusted roofs stand in a ring around a tall central tower, a curved concrete wall behind them." style="object-position: 50% 45%"></div>
-      <figcaption><b>The settlement</b>Shacks in a ring around a central tower</figcaption>
-    </figure>
     <div class="pair">
       <figure class="still">
-        <div class="frame wide"><img src="img/ld-10.jpg" alt="Hills and a billboard wall above a concrete pad, with the walled settlement and its tower behind."></div>
-        <figcaption>The wider area around the settlement</figcaption>
+        <div class="frame wide"><img src="img/ld-bg-hill.jpg" alt="In game: the settlement and its tower seen from a hill at dusk."></div>
+        <figcaption><b>In game</b>The settlement from the hill</figcaption>
       </figure>
       <figure class="still">
         <div class="frame wide"><img src="img/ld-09.jpg" alt="Dry grass and a hill with an opening in the rock, two barricade posts with small figures standing by them."></div>
-        <figcaption>Guard posts by an opening in the rock</figcaption>
+        <figcaption><b>Editor</b>Guard posts by an opening in the rock</figcaption>
       </figure>
     </div>
   </section>
@@ -92,12 +88,12 @@
     </div>
     <div class="pair">
       <figure class="still">
-        <div class="frame wide"><img src="img/ld-02.jpg" alt="Inside a brown dirt cave: wooden stairs in the foreground, a railed bridge overhead, a ladder and corrugated metal huts."></div>
-        <figcaption>Stairs, bridges and huts</figcaption>
+        <div class="frame wide"><img src="img/ld-bg-cave.jpg" alt="In game: a wooden hut and a floodlight on a deck in the cave town."></div>
+        <figcaption><b>In game</b>A hut in the cave town</figcaption>
       </figure>
       <figure class="still">
         <div class="frame wide"><img src="img/ld-04.jpg" alt="Top-down view of the cave settlement: shacks, a central wooden tower and fenced ramps."></div>
-        <figcaption>The cave settlement from above</figcaption>
+        <figcaption><b>Editor</b>The cave settlement from above</figcaption>
       </figure>
     </div>
   </section>
@@ -108,21 +104,16 @@
       <h2>A cage over the water</h2>
       <p>This is where the raiders fight, in a cage above the purified water, to decide who controls it. The platform stands on pillars and is reached by walkways and stairs from both sides.</p>
     </div>
-    <figure class="still">
-      <div class="frame scope"><img src="img/ld-01.jpg" alt="A cave arena: an octagonal platform with a round scaffold cage stands on pillars over dark water, with walkways and stairs on both sides." style="object-position: 50% 52%"></div>
-      <figcaption>The arena</figcaption>
-    </figure>
     <div class="pair">
       <figure class="still">
-        <div class="frame wide"><img src="img/ld-06.jpg" alt="The arena cave from directly above: the octagonal platform, its ring cage and the walkways that lead to it."></div>
-        <figcaption>The layout from above</figcaption>
+        <div class="frame wide"><img src="img/ld-bg-cage.jpg" alt="In game: the ring cage of the arena above the water, lit by small lamps."></div>
+        <figcaption><b>In game</b>The cage over the water</figcaption>
       </figure>
       <figure class="still">
-        <div class="frame wide"><img src="img/ld-05.jpg" alt="Closer view of the arena: plank walkways with rusty rails and pillars going down into the water."></div>
-        <figcaption>Walkways into the arena</figcaption>
+        <div class="frame wide"><img src="img/ld-06.jpg" alt="The arena cave from directly above: the octagonal platform, its ring cage and the walkways that lead to it."></div>
+        <figcaption><b>Editor</b>The layout from above</figcaption>
       </figure>
     </div>
-    <p class="muted">All pictures are views from the editor.</p>
   </section>
 
   <nav class="next" aria-label="More work">
@@ -136,10 +127,9 @@
   (function () {
     // The opening picture changes between the three areas of the level.
     var views = [
-      { src: "img/ld-bg-hill.jpg", pos: "50% 50%", area: "Above ground", what: "The settlement from the hill" },
-      { src: "img/ld-bg-cave.jpg", pos: "50% 50%", area: "Below ground", what: "The cave town" },
-      { src: "img/ld-bg-cage.jpg", pos: "50% 50%", area: "The arena", what: "A cage over the water" },
-      { src: "img/ld-bg-deck.jpg", pos: "50% 50%", area: "The arena", what: "From the upper deck" }
+      { src: "img/ld-10.jpg", pos: "50% 55%", area: "Above ground", what: "The wider area" },
+      { src: "img/ld-02.jpg", pos: "50% 50%", area: "Below ground", what: "The cave town" },
+      { src: "img/ld-05.jpg", pos: "50% 50%", area: "The arena", what: "Walkways over the water" }
     ];
     var layers = document.querySelectorAll(".slide");
     var now = document.getElementById("now");

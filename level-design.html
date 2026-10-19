@@ -21,7 +21,7 @@
 
 <section class="stage inner">
   <div class="slides" aria-hidden="true">
-    <div class="slide is-on" style="background-image: url(img/ld-07.jpg); background-position: 50% 45%"></div>
+    <div class="slide is-on" style="background-image: url(img/ld-bg-hill.jpg); background-position: 50% 50%"></div>
     <div class="slide"></div>
   </div>
   <div class="scrim" aria-hidden="true"></div>
@@ -136,11 +136,10 @@
   (function () {
     // The opening picture changes between the three areas of the level.
     var views = [
-      { src: "img/ld-07.jpg", pos: "50% 45%", area: "Above ground", what: "The settlement" },
-      { src: "img/ld-02.jpg", pos: "50% 50%", area: "Below ground", what: "The cave town" },
-      { src: "img/ld-01.jpg", pos: "50% 52%", area: "The arena", what: "A cage over the water" },
-      { src: "img/ld-10.jpg", pos: "50% 55%", area: "Above ground", what: "The wider area" },
-      { src: "img/ld-05.jpg", pos: "50% 50%", area: "The arena", what: "Walkways over the water" }
+      { src: "img/ld-bg-hill.jpg", pos: "50% 50%", area: "Above ground", what: "The settlement from the hill" },
+      { src: "img/ld-bg-cave.jpg", pos: "50% 50%", area: "Below ground", what: "The cave town" },
+      { src: "img/ld-bg-cage.jpg", pos: "50% 50%", area: "The arena", what: "A cage over the water" },
+      { src: "img/ld-bg-deck.jpg", pos: "50% 50%", area: "The arena", what: "From the upper deck" }
     ];
     var layers = document.querySelectorAll(".slide");
     var now = document.getElementById("now");
